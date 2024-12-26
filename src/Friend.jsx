@@ -1,9 +1,12 @@
 import React from "react";
 import Button from "./Button";
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, OnSelectFriend, selected }) => {
+    const isSelected = selected?.id === friend.id;
+
   return (
-    <li key={friend.id}>
+    <li key={friend.id} className={isSelected ? "selected" : ""}>
+      
       <img src={friend.image} alt={friend.name} />
       <h3>{friend.name}</h3>
       {friend.balance < 0 ? (
@@ -19,7 +22,7 @@ const Friend = ({ friend }) => {
         </p>
       )}
       {/* <button className='button'>Select</button> */}
-      <Button>Select</Button>
+          <Button onClick={() => OnSelectFriend(friend)}>{ isSelected?"Close":"Select"}</Button>
     </li>
   );
 };
