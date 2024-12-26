@@ -53,6 +53,14 @@ export default function App() {
     
   }
 
+  function handleSplitBill(amount) { 
+    console.log(amount)
+
+    setFriends(friends => friends.map(friend => friend.id === selectFriend.id ? { ...friend, balance: friend.balance + amount } : friend));
+    setSelectFriend(null);
+  }
+
+
   return (
     <div className="app">
       <div className="sidebar">
@@ -65,7 +73,7 @@ export default function App() {
         </Button>
       </div>
 
-      {selectFriend && <FormSplitBill friend={selectFriend} />}
+      {selectFriend && <FormSplitBill friend={selectFriend} onSplitBill={handleSplitBill} />}
     </div>
   );
 }
